@@ -19,7 +19,7 @@ class Desk{
   }
   
    void checkCollision(PVector guyPos, float guyW, float guyH){
-    if (guyPos.x < position.x + (deskW - 20) && //shrink the hitbox forr the sides to accomadate for blank pixels in the guy image
+    if (guyPos.x < position.x + (deskW +20) && //increasse the hitbox forr the right sides to accomadate for blank pixels in the guy image
         guyPos.x + guyW > (position .x +20) &&
         guyPos.y < position.y + (deskH-100) && //shrink the desk h a bit so the guy can walk slightly into the image. helps with prespective
         guyPos.y + guyH > position.y){

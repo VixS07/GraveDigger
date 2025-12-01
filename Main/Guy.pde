@@ -46,15 +46,30 @@ boolean showEnding1;
   //walking down check and animation
   if((key == 's' || key == 'S') && isWalking){
     //draw in the walking down animation
+    imageMode(CENTER);
     image(guyWalkDown[guyFrameDown],0,0,guyW,130);
+    imageMode(CORNER);
   } //walking to the side check and animation
   else if((key == 'a' || key == 'A' || key == 'd' || key == 'D') && isWalking){
     //draw in the walking down animation
+    //check for the direction
+    if(direction == 1){
+      //centerr the image so when it flips theres no jump
+      imageMode(CENTER);
     image(guyWalkSide[guyFrameSide],0,0,guyW,130);
+     //reset so it doesnt mess up the other images
+     imageMode(CORNER);
+  } else {
+    imageMode(CENTER);
+    image (guyWalkSide[guyFrameSide], 0,0,guyW,130);
+    imageMode(CORNER);
+  }
   }
   else {
     //draw in the idle guy image
+    imageMode(CENTER);
     image(guy, 0, 0,guyW,130);
+    imageMode(CORNER);
   }  
   popMatrix();
 
@@ -68,7 +83,7 @@ boolean showEnding1;
       //make it so that he cant walk offscreen
       //anticipate for accidental caps lock
       //down (s)
-    if ((key == 's' || key == 'S') && position.y<height-130 && canMove) {
+    if ((key == 's' || key == 'S') && position.y<height - 65 && canMove) {
       //estimate where guy would be in 2 pixels
       PVector newPos = new PVector (position.x,position.y +2);
       //give the desk collision check the info it needs
@@ -91,7 +106,7 @@ boolean showEnding1;
       }  
     }
     // up (w)
-    else if ((key == 'w' || key == 'W') && position.y > 70 && canMove) {
+    else if ((key == 'w' || key == 'W') && position.y > 130 && canMove) {
       PVector newPos = new PVector (position.x,position.y -2);
       desk.checkCollision(newPos,guyW,130);
       bed.checkCollision(newPos,guyW,130);
