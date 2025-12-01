@@ -1,17 +1,15 @@
+
 class Cabin{
-PImage bed;
+
 PImage wall;
 PImage floor;
-PImage desk;
 PImage sigil;
 
 PVector wallPosition;
 PVector floorPosition;
   Cabin(float x, float y){
-    bed = loadImage("cabin bed.png");
     wall = loadImage("Cabin wall.png");
     floor = loadImage("cabin floor.png");
-    desk = loadImage("cabin desk.png");
     sigil = loadImage("sigil.png");
     //array length perviousely calculated based on size of image, and size of canvas
     wallPosition = new PVector(x,y);
@@ -44,14 +42,11 @@ PVector floorPosition;
     }
   }
   
-  //bed
-  image(bed,470,120,150,220);
-  
-  //desk
-  fill(255,0,0);
-  image(desk,270,260,100,180);
-  
   //sigil
   image(sigil,30,250,200,200);
+  }
+  
+  void movement(){
+  
   }
 }
