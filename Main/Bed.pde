@@ -18,8 +18,8 @@ boolean isColliding;
   }
   
   void checkCollision(PVector guyPos, float guyW, float guyH){
-    if (guyPos.x < position.x + bedW &&
-        guyPos.x + guyW > position .x &&
+    if (guyPos.x < position.x + (bedW - 20) && //shrink the hitbox forr the ssides to accomadate for blank pixels in the guy image
+        guyPos.x + guyW > (position .x +20) &&
         guyPos.y < position.y + (bedH-100) && //shrink the bed h a bit so the guy can walk slightly into the image. helps with prespective
         guyPos.y + guyH > position.y){
     isColliding = true;

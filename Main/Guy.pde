@@ -2,41 +2,57 @@ class Guy{
 //code gotton off of zombie walk on slate, with modifications
 PImage guy;
 int guyW;
-PImage guyWalk[];
+PImage guyWalkDown[];
+PImage guyWalkSide[];
 boolean isWalking;
-int guyFrame;
+int guyFrameDown;
+int guyFrameSide;
 PVector position;
 int direction = 1;
 boolean canMove = true;
 
 boolean showEnding1;
   Guy(float x, float y){
-    guy = loadImage("down1.png");
-    
-    guyWalk = new PImage[4];
-    for(int i = 0; i < guyWalk.length;i++){
-    //  guyWalk[i] = loadImage("down" + (i+1) + ".png");
-    }
-    guyW = 60;
+    guyW = 90;
     position = new PVector(x,y);
-    showEnding1 = false;
+    guy = loadImage("down1.png");
+    //create the arrays for the animation
+    guyWalkDown = new PImage[4];
+    guyWalkSide = new PImage[6];  
+    //asssigning all the images into the array for walking down animation
+    for(int i = 0; i < guyWalkDown.length;i++){
+      guyWalkDown[i] = loadImage("down" + (i+1) + ".png");
+    }
+    //asssigning all the images into the array for walking to the side animation
+    for(int i = 0; i < guyWalkSide.length;i++){
+      guyWalkSide[i] = loadImage("sidewalk" + (i+1) + ".png");
+    }
   }
   
   void display(){
   
   
-  //each frame of the snaimation every 5 frames
+  //each frame of the animation every 5 frames for walking down
   if (frameCount % 10 == 0){
-    guyFrame = (guyFrame + 1) % guyWalk.length;
+    guyFrameDown = (guyFrameDown + 1) % guyWalkDown.length;
+    guyFrameSide = (guyFrameSide + 1) % guyWalkSide.length;
   }
+  
+
   
   pushMatrix();
   translate(position.x,position.y);
+  scale(direction,1);
+  //walking down check and animation
   if((key == 's' || key == 'S') && isWalking){
     //draw in the walking down animation
-    //image(guyWalk[guyFrame],0,0,60,130);
-    image(guy, 0, 0,guyW,130);
-  } else {
+    image(guyWalkDown[guyFrameDown],0,0,guyW,130);
+  } //walking to the side check and animation
+  else if((key == 'a' || key == 'A' || key == 'd' || key == 'D') && isWalking){
+    //draw in the walking down animation
+    image(guyWalkSide[guyFrameSide],0,0,guyW,130);
+  }
+  else {
     //draw in the idle guy image
     image(guy, 0, 0,guyW,130);
   }  
@@ -56,35 +72,40 @@ boolean showEnding1;
       //estimate where guy would be in 2 pixels
       PVector newPos = new PVector (position.x,position.y +2);
       //give the desk collision check the info it needs
+      desk.checkCollision(newPos,guyW,130);
       bed.checkCollision(newPos,guyW,130);
       //if youre not gonna collide with the objects in 2 pixels, move that way
-      if(!bed.isColliding){
+      if(!bed.isColliding && !desk.isColliding){
         //move 2 pixels down
         position.y+=2;
       }
     }
     //left (a)
-    if ((key == 'a' || key == 'A') && position.x > -16 && canMove) {
+    else if ((key == 'a' || key == 'A') && position.x > -16 && canMove) {
+      direction = -1;
       PVector newPos = new PVector (position.x - 2,position.y);
-
+      desk.checkCollision(newPos,guyW,130);
       bed.checkCollision(newPos,guyW,130);
-      if(!bed.isColliding){
+      if(!bed.isColliding && !desk.isColliding){
         position.x-=2;
       }  
     }
     // up (w)
-    if ((key == 'w' || key == 'W') && position.y > 70 && canMove) {
+    else if ((key == 'w' || key == 'W') && position.y > 70 && canMove) {
       PVector newPos = new PVector (position.x,position.y -2);
+      desk.checkCollision(newPos,guyW,130);
       bed.checkCollision(newPos,guyW,130);
-      if(!bed.isColliding){
+      if(!bed.isColliding && !desk.isColliding){
         position.y-=2;
       }
     }
     //right (d)
-    if ((key == 'd' || key == 'D') && position.x > -16 && canMove) {
+    else if ((key == 'd' || key == 'D') && position.x > -16 && canMove) {
+      direction = 1;
       PVector newPos = new PVector (position.x+2,position.y);
+      desk.checkCollision(newPos,guyW,130);
       bed.checkCollision(newPos,guyW,130);
-      if(!bed.isColliding){
+      if(!bed.isColliding && !desk.isColliding){
         position.x+=2;
       }
     }
