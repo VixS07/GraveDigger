@@ -53,22 +53,41 @@ boolean showEnding1;
       //anticipate for accidental caps lock
       //down (s)
     if ((key == 's' || key == 'S') && position.y<height-130 && canMove) {
+      //estimate where guy would be in 2 pixels
+      PVector newPos = new PVector (position.x,position.y +2);
+      //give the desk collision check the info it needs
+      bed.checkCollision(newPos,guyW,130);
+      //if youre not gonna collide with the objects in 2 pixels, move that way
+      if(!bed.isColliding){
+        //move 2 pixels down
         position.y+=2;
       }
+    }
     //left (a)
     if ((key == 'a' || key == 'A') && position.x > -16 && canMove) {
+      PVector newPos = new PVector (position.x - 2,position.y);
+
+      bed.checkCollision(newPos,guyW,130);
+      if(!bed.isColliding){
         position.x-=2;
       }  
+    }
     // up (w)
     if ((key == 'w' || key == 'W') && position.y > 70 && canMove) {
-     
+      PVector newPos = new PVector (position.x,position.y -2);
+      bed.checkCollision(newPos,guyW,130);
+      if(!bed.isColliding){
         position.y-=2;
       }
+    }
     //right (d)
     if ((key == 'd' || key == 'D') && position.x > -16 && canMove) {
-      
+      PVector newPos = new PVector (position.x+2,position.y);
+      bed.checkCollision(newPos,guyW,130);
+      if(!bed.isColliding){
         position.x+=2;
       }
+    }
   } else {
     isWalking = false;
   }
