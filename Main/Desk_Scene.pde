@@ -7,7 +7,7 @@ class DeskScene{
     wall = loadImage("Cabin wall.png");
     desk = loadImage("desk.png");
     wallPos = new PVector(x,y);
-    ghost1 = new Ghost1(250,30,260,310);
+    ghost1 = new Ghost1(250,30,200,310);
   }
   
   

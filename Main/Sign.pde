@@ -15,7 +15,6 @@ class Sign{
 
   void display(){
   image(sign,pos.x,pos.y,signW,signH);
-  
   }
   
   void checkCollision(){

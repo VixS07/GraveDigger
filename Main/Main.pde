@@ -7,6 +7,7 @@ int ghostsHelped = 0;
 Ending1 ending1;
 Interaction interaction;
 boolean gameScreenFreeze;
+boolean outside;
 DeskScene deskScene;
 Bell bell;
 Sign sign;
@@ -24,6 +25,7 @@ void setup(){
   deskScene = new DeskScene(0,0);
   bell = new Bell(550,360,90,70);
   sign = new Sign(50,220,150,120);
+  outside = false;
 }
 
 void draw(){
@@ -34,9 +36,6 @@ void draw(){
   else if(gameScreenFreeze && interaction.showDesk){
   deskScene.display(bell);
   } else{
-    
-  //display desk scene
- 
   
   //cabin
   cabin.display();
@@ -56,10 +55,14 @@ void draw(){
   if(guy.position.y >250){
   guy.display();
   }
-  guy.movement(desk,bed);
+  guy.movement(desk,bed,rug);
   
   //essentially all objects passed into the interaction checksssdsa
   interaction.assign(bed, desk, bell, rug, guy,deskScene);
+  }
+  
+  if(outside){
+  
   }
 }
 

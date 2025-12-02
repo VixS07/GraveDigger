@@ -18,7 +18,7 @@ boolean downPressed;
 boolean leftPressed;
 boolean rightPressed;
 
-
+PImage leave;
   Guy(float x, float y){
     guyW = 90;
     position = new PVector(x,y);
@@ -39,6 +39,8 @@ boolean rightPressed;
     for(int i = 0; i < guyWalkUp.length;i++){
       guyWalkUp[i] = loadImage("walkUp" + (i+1) + ".png");
     }
+    
+    leave = loadImage("leave.png");
     
   }
   
@@ -83,7 +85,7 @@ boolean rightPressed;
 
   }
   
-  void movement(Desk desk, Bed bed){
+  void movement(Desk desk, Bed bed, Rug rug){
       //make it so that regardless on if he can move or not, 
       //when the right button is pressed it plays the animation
       if (upPressed || downPressed || leftPressed || rightPressed){
@@ -138,6 +140,14 @@ boolean rightPressed;
         position.x+=3;
       }
     }
+    
+    //check for ug overlap, and send signifier
+    PVector newPos = new PVector (position.x,position.y);
+    rug.checkCollision(newPos,guyW,130);
+    if(rug.isColliding){
+    image(leave,300,0,200,50);
+  
+  }
   }
 
 
