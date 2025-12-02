@@ -18,9 +18,9 @@ class Bell{
   }
   
   void checkCollision(){
-   if (mouseX < position.x + 90 && 
+   if (mouseX < position.x + bellW && 
         mouseX > position .x &&
-        mouseY < position.y + 70 && 
+        mouseY < position.y + bellH && 
         mouseY > position.y) {
     isColliding = true;
     } else {

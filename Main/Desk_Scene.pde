@@ -33,9 +33,12 @@ class DeskScene{
     
   //draw bell
   bell.display();
-  }
   
   //draw sign
+  sign.display();
+  }
   
+
+
   
 }

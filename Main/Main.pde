@@ -9,6 +9,7 @@ Interaction interaction;
 boolean gameScreenFreeze;
 DeskScene deskScene;
 Bell bell;
+Sign sign;
 
 void setup(){
   size(800,530);
@@ -22,6 +23,7 @@ void setup(){
   gameScreenFreeze = false;
   deskScene = new DeskScene(0,0);
   bell = new Bell(550,360,90,70);
+  sign = new Sign(50,220,150,120);
 }
 
 void draw(){
