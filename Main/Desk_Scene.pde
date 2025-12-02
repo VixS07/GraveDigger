@@ -1,0 +1,4 @@
+class DeskScene{
+  DeskScene{
+  }
+}

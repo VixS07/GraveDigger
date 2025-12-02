@@ -18,6 +18,7 @@ boolean downPressed;
 boolean leftPressed;
 boolean rightPressed;
 
+
   Guy(float x, float y){
     guyW = 90;
     position = new PVector(x,y);
@@ -38,6 +39,7 @@ boolean rightPressed;
     for(int i = 0; i < guyWalkUp.length;i++){
       guyWalkUp[i] = loadImage("walkUp" + (i+1) + ".png");
     }
+    
   }
   
   void display(){
