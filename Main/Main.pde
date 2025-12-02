@@ -8,7 +8,7 @@ Ending1 ending1;
 Interaction interaction;
 boolean gameScreenFreeze;
 DeskScene deskScene;
-
+Bell bell;
 
 void setup(){
   size(800,530);
@@ -21,6 +21,7 @@ void setup(){
   interaction = new Interaction();
   gameScreenFreeze = false;
   deskScene = new DeskScene(0,0);
+  bell = new Bell(550,360,90,70);
 }
 
 void draw(){
@@ -29,7 +30,7 @@ void draw(){
     ending1.display();
   } 
   else if(gameScreenFreeze && interaction.showDesk){
-  deskScene.display();
+  deskScene.display(bell);
   } else{
     
   //display desk scene
@@ -56,7 +57,7 @@ void draw(){
   guy.movement(desk,bed);
   
   //essentially all objects passed into the interaction checksssdsa
-  interaction.assign(bed, desk, rug, guy,deskScene);
+  interaction.assign(bed, desk, bell, rug, guy,deskScene);
   }
 }
 
@@ -103,5 +104,12 @@ void keyPressed(){
   }
   if (key == 'd' || key == 'D'){
     guy.rightPressed = false;
+  }
+}
+
+void mouseClicked(){
+  bell.checkCollision();
+  if(bell.isColliding){
+  ghostsHelped+=1;
   }
 }

@@ -28,6 +28,4 @@ boolean isColliding;
   isColliding = false;
   }
 }
-  
-  
 }

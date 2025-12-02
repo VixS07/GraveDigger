@@ -8,7 +8,7 @@ class Interaction{
   
   }
   
-  void assign(Bed bed, Desk desk, Rug rug, Guy guy, DeskScene deskScene){
+  void assign(Bed bed, Desk desk, Bell bell, Rug rug, Guy guy, DeskScene deskScene){
     //end day interaction
       //ending 1
     if(bed.isColliding && keyCode == ENTER){

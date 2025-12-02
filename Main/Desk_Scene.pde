@@ -11,7 +11,7 @@ class DeskScene{
   }
   
   
-  void display(){
+  void display(Bell bell){
     //wall
   //assign values for all the wall png positions so it draws logs across the wall
   //x position
@@ -24,16 +24,18 @@ class DeskScene{
     }
   }
   //I was originally gonna do random order for ghossts, but i dont have the time to properly implement it
-  if(ghostsHelped == 0){
+  if(ghostsHelped == 1){
   ghost1.display();
   }
   
   //draw desk
   image(desk,0,340,800,190); 
     
-  //draw bells
-  image(bell,550,360,90,70);
-  
-  
+  //draw bell
+  bell.display();
   }
+  
+  //draw sign
+  
+  
 }
