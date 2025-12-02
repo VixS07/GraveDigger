@@ -6,7 +6,8 @@ Rug rug;
 int ghostsHelped = 0;
 Ending1 ending1;
 Interaction interaction;
-boolean gameOver;
+boolean gameScreenFreeze;
+DeskScene deskScene;
 
 
 void setup(){
@@ -18,14 +19,21 @@ void setup(){
   rug = new Rug(500,430);
   ending1 = new Ending1();
   interaction = new Interaction();
-  gameOver = false;
+  gameScreenFreeze = false;
+  deskScene = new DeskScene(0,0);
 }
 
 void draw(){
   //display endings
-  if (gameOver && ghostsHelped == 0){
+  if (gameScreenFreeze && ghostsHelped == 0){
     ending1.display();
   } else{
+    
+  //display desk scene
+  if(gameScreenFreeze && interaction.showDesk){
+  deskScene.display();
+  }
+  
   //cabin
   cabin.display();
   //will diplay undernaeth if above furniture
@@ -47,7 +55,7 @@ void draw(){
   guy.movement(desk,bed);
   
   //essentially all objects passed into the interaction checksssdsa
-  interaction.assign(bed, desk, rug, guy, ending1);
+  interaction.assign(bed, desk, rug, guy,deskScene);
   }
 }
 
@@ -57,7 +65,7 @@ void keyPressed(){
   //https://forum.processing.org/one/topic/ignore-escape-key-do-other-action.html
   key = 0;
    guy.canMove = true;
-   gameOver = false;
+   gameScreenFreeze = false;
   }
   
   //checking to see if the key is pressed
