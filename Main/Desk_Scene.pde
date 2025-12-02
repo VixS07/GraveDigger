@@ -1,10 +1,13 @@
 class DeskScene{
+  Ghost1 ghost1;
   PImage wall;
   PImage desk;
   PVector wallPos;
   DeskScene(float x, float y){
     wall = loadImage("Cabin wall.png");
+    desk = loadImage("desk.png");
     wallPos = new PVector(x,y);
+    ghost1 = new Ghost1(250,30,260,310);
   }
   
   
@@ -20,6 +23,17 @@ class DeskScene{
       image(wall,wallPos.x,wallPos.y,50,45);
     }
   }
+  //I was originally gonna do random order for ghossts, but i dont have the time to properly implement it
+  if(ghostsHelped == 0){
+  ghost1.display();
+  }
+  
+  //draw desk
+  image(desk,0,340,800,190); 
     
-    }
+  //draw bells
+  image(bell,550,360,90,70);
+  
+  
+  }
 }

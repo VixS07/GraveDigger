@@ -114,7 +114,7 @@ boolean rightPressed;
       bed.checkCollision(newPos,guyW,130);
       if(!bed.isColliding && !desk.isColliding){
         //move 2 pixels left
-        position.x-=2;
+        position.x-=3;
       }  
     }
     // up (w)
@@ -135,7 +135,7 @@ boolean rightPressed;
       bed.checkCollision(newPos,guyW,130);
       if(!bed.isColliding && !desk.isColliding){
         //move 2 pixels rright
-        position.x+=2;
+        position.x+=3;
       }
     }
   }

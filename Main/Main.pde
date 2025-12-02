@@ -25,14 +25,15 @@ void setup(){
 
 void draw(){
   //display endings
-  if (gameScreenFreeze && ghostsHelped == 0){
+  if (gameScreenFreeze && ghostsHelped == 0 && interaction.showEnd){
     ending1.display();
+  } 
+  else if(gameScreenFreeze && interaction.showDesk){
+  deskScene.display();
   } else{
     
   //display desk scene
-  if(gameScreenFreeze && interaction.showDesk){
-  deskScene.display();
-  }
+ 
   
   //cabin
   cabin.display();
@@ -66,6 +67,8 @@ void keyPressed(){
   key = 0;
    guy.canMove = true;
    gameScreenFreeze = false;
+   interaction.showEnd = false;
+   interaction.showDesk = false;
   }
   
   //checking to see if the key is pressed
