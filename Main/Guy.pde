@@ -170,6 +170,8 @@ PImage leave;
         PVector newPos = new PVector (position.x,position.y +2);
         if(!outside.guyMoveY){
             outside.pos.y-=3;
+            outside.pos.y = constrain(outside.pos.y, -outside.outside.height + height, 0);
+
         } else if (outside.guyMoveY){
             position.y+=3;
         }
@@ -181,6 +183,7 @@ PImage leave;
         PVector newPos = new PVector (position.x,position.y +2);
         if(!outside.guyMoveY){
             outside.pos.y+=3;
+            outside.pos.y = constrain(outside.pos.y, -outside.outside.height + height, 0);
         } else if (outside.guyMoveY){
             position.y-=3;
         }
@@ -195,6 +198,7 @@ PImage leave;
         PVector newPos = new PVector (position.x,position.y +2);
         if(!outside.guyMoveX){
             outside.pos.x+=3;
+            outside.pos.x = constrain(outside.pos.x, -outside.outside.width + width, 0);
         } else if (outside.guyMoveX){
             position.x-=3;
         }
@@ -207,6 +211,7 @@ PImage leave;
         PVector newPos = new PVector (position.x,position.y +2);
         if(!outside.guyMoveX){
             outside.pos.x-=3;
+            outside.pos.x = constrain(outside.pos.x, -outside.outside.width + width, 0);
         } else if (outside.guyMoveX){
             position.x+=3;
         }
