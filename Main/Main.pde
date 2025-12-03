@@ -13,8 +13,10 @@ Bell bell;
 Sign sign;
 Outside outside;
 
+
 void setup(){
   size(800,530);
+  
   cabin = new Cabin(0,0);
   guy = new Guy(600,400);
   desk = new Desk(270,260);
@@ -27,7 +29,7 @@ void setup(){
   bell = new Bell(550,360,90,70);
   sign = new Sign(50,220,150,120);
   isOutside = false;
-  outside = new Outside();
+  outside = new Outside(0,0);
 }
 
 void draw(){
@@ -66,9 +68,10 @@ void draw(){
   else if(isOutside){
     outside.display();
     guy.display();
-    guy.movementOutside();
+    guy.movementOutside(outside);
+    //outside.checkMap(guy);
   }
-}
+} 
 
 void keyPressed(){
   if (key == ESC){

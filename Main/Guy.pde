@@ -18,6 +18,9 @@ boolean downPressed;
 boolean leftPressed;
 boolean rightPressed;
 
+boolean mapXMoves;
+boolean mapYMoves;
+
 PImage leave;
   Guy(float x, float y){
     guyW = 90;
@@ -150,7 +153,9 @@ PImage leave;
   }
   }
   
-  void movementOutside(){
+  void movementOutside(Outside outside){
+    //movement section for the map only moving down
+    //if(mapXMoves && !mapYMoves){
     //make it so that regardless on if he can move or not, 
       //when the right button is pressed it plays the animation
       if (upPressed || downPressed || leftPressed || rightPressed){
@@ -168,7 +173,8 @@ PImage leave;
       //if youre not gonna collide with the objects in 2 pixels, move that way
       if(isOutside){
         //move 2 pixels down
-        position.y+=2;
+        outside.pos.y -=2;
+        
       }
     }
     //left (a)
@@ -177,7 +183,7 @@ PImage leave;
       PVector newPos = new PVector (position.x - 2,position.y);
       if(isOutside){
         //move 2 pixels left
-        position.x-=3;
+        outside.pos.x-=3;
       }  
     }
     // up (w)
@@ -185,7 +191,7 @@ PImage leave;
       PVector newPos = new PVector (position.x,position.y -2);
       if(isOutside){
         //move 2 pixels up
-        position.y-=2;
+        outside.pos.y-=2;
       }
     }
     //right (d)
@@ -194,10 +200,12 @@ PImage leave;
       PVector newPos = new PVector (position.x+2,position.y);
       if(isOutside){
         //move 2 pixels rright
-        position.x+=3;
+        outside.pos.x+=3;
+        
       }
     }
-  }
+    }
+    
 
 
 }

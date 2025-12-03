@@ -1,11 +1,18 @@
 class Outside{
   PImage outside;
-  Outside(){
+  PVector pos;
+  
+  Outside(float x, float y){
   outside = loadImage("outside.png");
+  pos = new PVector (x,y);
   }
   
   void display(){
-  image(outside,0,0);
+  image(outside,pos.x,pos.y);
   }
+  
+  //void checkMap(Guy guy){
+
+  //}
 
 }
