@@ -7,15 +7,16 @@ int ghostsHelped = 0;
 Ending1 ending1;
 Interaction interaction;
 boolean gameScreenFreeze;
-boolean outside;
+boolean isOutside;
 DeskScene deskScene;
 Bell bell;
 Sign sign;
+Outside outside;
 
 void setup(){
   size(800,530);
   cabin = new Cabin(0,0);
-  guy = new Guy(500,400);
+  guy = new Guy(600,400);
   desk = new Desk(270,260);
   bed = new Bed(470,120);
   rug = new Rug(500,430);
@@ -25,7 +26,8 @@ void setup(){
   deskScene = new DeskScene(0,0);
   bell = new Bell(550,360,90,70);
   sign = new Sign(50,220,150,120);
-  outside = false;
+  isOutside = false;
+  outside = new Outside();
 }
 
 void draw(){
@@ -35,7 +37,7 @@ void draw(){
   } 
   else if(gameScreenFreeze && interaction.showDesk){
   deskScene.display(bell);
-  } else{
+  } else if (!isOutside){
   
   //cabin
   cabin.display();
@@ -61,8 +63,10 @@ void draw(){
   interaction.assign(bed, desk, bell, rug, guy,deskScene);
   }
   
-  if(outside){
-  
+  else if(isOutside){
+    outside.display();
+    guy.display();
+    guy.movementOutside();
   }
 }
 

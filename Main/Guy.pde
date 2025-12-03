@@ -149,6 +149,55 @@ PImage leave;
   
   }
   }
+  
+  void movementOutside(){
+    //make it so that regardless on if he can move or not, 
+      //when the right button is pressed it plays the animation
+      if (upPressed || downPressed || leftPressed || rightPressed){
+      isWalking = true;
+      } else {
+      isWalking = false;
+      }
+      //make it so that he cant walk offscreen
+      //anticipate for accidental caps lock
+      //down (s)
+    if (downPressed && position.y<height - 65 && canMove) {
+      //estimate where guy would be in 2 pixels
+      PVector newPos = new PVector (position.x,position.y +2);
+      //give the desk collision check the info it needs
+      //if youre not gonna collide with the objects in 2 pixels, move that way
+      if(isOutside){
+        //move 2 pixels down
+        position.y+=2;
+      }
+    }
+    //left (a)
+    if (leftPressed && position.x > -16 && canMove) {
+      direction = -1;
+      PVector newPos = new PVector (position.x - 2,position.y);
+      if(isOutside){
+        //move 2 pixels left
+        position.x-=3;
+      }  
+    }
+    // up (w)
+    if (upPressed && position.y > 130 && canMove) {
+      PVector newPos = new PVector (position.x,position.y -2);
+      if(isOutside){
+        //move 2 pixels up
+        position.y-=2;
+      }
+    }
+    //right (d)
+    if (rightPressed && position.x > -16 && canMove) {
+      direction = 1;
+      PVector newPos = new PVector (position.x+2,position.y);
+      if(isOutside){
+        //move 2 pixels rright
+        position.x+=3;
+      }
+    }
+  }
 
 
 }
