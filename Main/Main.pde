@@ -12,7 +12,7 @@ DeskScene deskScene;
 Bell bell;
 Sign sign;
 Outside outside;
-
+Grave[] graves;
 
 
 void setup(){
@@ -33,8 +33,13 @@ void setup(){
   //outside
   isOutside = false;
   outside = new Outside(0,0);
-  grave = new Grave(680,15,110,210,"grave1",1);
-  grave2 = new Grave(980,15,110,210,"grave2",2);
+  //graves
+  graves = new Grave[5];
+  graves[0] = new Grave(680, 15, 110, 210, "grave1", 0);
+  graves[1] = new Grave(980, 15, 110, 210, "grave2", 1);
+  graves[2] = new Grave(1260, 15, 110, 210, "grave3", 2);
+  graves[3] = new Grave(810, 760, 110, 190, "grave4", 3);
+  graves[4] = new Grave(190, 760, 110, 190, "grave5", 4);
 }
 
 void draw(){
@@ -72,12 +77,13 @@ void draw(){
   
   else if(isOutside){
     outside.display();
+    // draw all graves
+    for (int i = 0; i < graves.length; i++) {
+    graves[i].display(outside.pos);
+    }
     guy.display();
     guy.movementOutside(outside);
     outside.checkMap();
-    if(grave.isColliding){
-    println("fbeh");
-    }
   }
   
 } 

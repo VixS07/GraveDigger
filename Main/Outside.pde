@@ -17,8 +17,6 @@ class Outside{
   
   void display(){
   image(outside,pos.x,pos.y);
-  grave.display(pos);
-  grave2.display(pos);
   }
   
   void checkMap(){
