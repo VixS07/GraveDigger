@@ -4,7 +4,7 @@ class Outside{
   boolean guyMoveX;
   boolean guyMoveY;
   PVector tracker;
-  Grave grave;
+
   
   
   Outside(float x, float y){
@@ -13,12 +13,12 @@ class Outside{
   guyMoveX = true;
   guyMoveY = false; 
   tracker = new PVector(x,y);
-  grave = new Grave(680,15,"grave1");
   }
   
   void display(){
   image(outside,pos.x,pos.y);
   grave.display(pos);
+  grave2.display(pos);
   }
   
   void checkMap(){

@@ -1,5 +1,5 @@
 class DeskScene{
-  Ghost1 ghost1;
+  Ghosts ghost1;
   PImage wall;
   PImage desk;
   PVector wallPos;
@@ -7,7 +7,7 @@ class DeskScene{
     wall = loadImage("Cabin wall.png");
     desk = loadImage("desk.png");
     wallPos = new PVector(x,y);
-    ghost1 = new Ghost1(250,30,200,310);
+    ghost1 = new Ghosts(250,30,200,310,"ghost1",1);
   }
   
   

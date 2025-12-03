@@ -112,7 +112,7 @@ PImage leave;
       }
     }
     //left (a)
-    if (leftPressed && position.x > -16 && canMove) {
+    if (leftPressed && position.x > 16 && canMove) {
       direction = -1;
       PVector newPos = new PVector (position.x - 2,position.y);
       desk.checkCollision(newPos,guyW,130);
@@ -133,7 +133,7 @@ PImage leave;
       }
     }
     //right (d)
-    if (rightPressed && position.x > -16 && canMove) {
+    if (rightPressed && position.x < width-16 && canMove) {
       direction = 1;
       PVector newPos = new PVector (position.x+2,position.y);
       desk.checkCollision(newPos,guyW,130);
@@ -144,7 +144,7 @@ PImage leave;
       }
     }
     
-    //check for ug overlap, and send signifier
+    //check for rug overlap, and send signifier
     PVector newPos = new PVector (position.x,position.y);
     rug.checkCollision(newPos,guyW,130);
     if(rug.isColliding){
@@ -168,6 +168,8 @@ PImage leave;
         outside.tracker.y-=1;
         //estimate where guy would be in 2 pixels
         PVector newPos = new PVector (position.x,position.y +2);
+        grave.checkCollision(newPos,guyW,130,outside.pos);
+        if(!grave.isColliding){
         if(!outside.guyMoveY){
             outside.pos.y-=3;
             outside.pos.y = constrain(outside.pos.y, -outside.outside.height + height, 0);
@@ -176,11 +178,14 @@ PImage leave;
             position.y+=3;
         }
     }
+  }
     //up (w)
     if(upPressed && position.y > 0 && canMove){
         outside.tracker.y+=1;
         //estimate where guy would be in 2 pixels
-        PVector newPos = new PVector (position.x,position.y +2);
+        PVector newPos = new PVector (position.x,position.y -2);
+        grave.checkCollision(newPos,guyW,130,outside.pos);
+        if(!grave.isColliding){
         if(!outside.guyMoveY){
             outside.pos.y+=3;
             outside.pos.y = constrain(outside.pos.y, -outside.outside.height + height, 0);
@@ -188,14 +193,17 @@ PImage leave;
             position.y-=3;
         }
     }
+  }
     
     //horrizontal check
     //left (a)
-    if(leftPressed && position.x > -16 && canMove){
+    if(leftPressed && position.x > 16 && canMove){
         direction = -1;
         outside.tracker.x-=1;
         //estimate where guy would be in 2 pixels
-        PVector newPos = new PVector (position.x,position.y +2);
+        PVector newPos = new PVector (position.x-2,position.y);
+        grave.checkCollision(newPos,guyW,130,outside.pos);
+        if(!grave.isColliding){
         if(!outside.guyMoveX){
             outside.pos.x+=3;
             outside.pos.x = constrain(outside.pos.x, -outside.outside.width + width, 0);
@@ -203,21 +211,27 @@ PImage leave;
             position.x-=3;
         }
     }
+    }
     //right(d)
-    if(rightPressed && position.x > -16 && canMove){
+    if(rightPressed && position.x < 680 && canMove){
       direction = 1;
         outside.tracker.x+=1;
         //estimate where guy would be in 2 pixels
-        PVector newPos = new PVector (position.x,position.y +2);
+        PVector newPos = new PVector (position.x+2,position.y);
+        grave.checkCollision(newPos,guyW,130,outside.pos);
+        if(!grave.isColliding){
         if(!outside.guyMoveX){
             outside.pos.x-=3;
             outside.pos.x = constrain(outside.pos.x, -outside.outside.width + width, 0);
         } else if (outside.guyMoveX){
             position.x+=3;
         }
+        }
     }
     
     
 }
+
+
   
 }

@@ -1,13 +1,16 @@
-class Ghost1{
+class Ghosts{
   PImage ghost;
   PVector pos;
   float ghostW;
   float ghostH;
-  Ghost1(float x, float y, float w, float h){
-    ghost = loadImage("ghost1.png");
+  int id;
+  
+  Ghosts(float x, float y, float w, float h, String name, int num){
+    ghost = loadImage(name + ".png");
     pos = new PVector (x,y);
     ghostW=w;
     ghostH=h;
+    id = num;
   }
   
   void display(){

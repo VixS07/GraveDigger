@@ -12,6 +12,8 @@ DeskScene deskScene;
 Bell bell;
 Sign sign;
 Outside outside;
+  Grave grave;
+  Grave grave2;
 
 
 void setup(){
@@ -32,6 +34,8 @@ void setup(){
   //outside
   isOutside = false;
   outside = new Outside(0,0);
+  grave = new Grave(680,15,110,210,"grave1",1);
+  grave2 = new Grave(980,15,110,210,"grave2",2);
 }
 
 void draw(){
@@ -72,7 +76,9 @@ void draw(){
     guy.display();
     guy.movementOutside(outside);
     outside.checkMap();
-    
+    if(grave.isColliding){
+    println("fbeh");
+    }
   }
   
 } 
