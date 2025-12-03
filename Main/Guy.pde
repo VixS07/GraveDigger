@@ -154,83 +154,65 @@ PImage leave;
   }
   
   void movementOutside(Outside outside){
-    //movement section for the map moving, not the guy
-    //horizntal
-    if(!outside.guyMove){
-    //if(mapXMoves && !mapYMoves){
     //make it so that regardless on if he can move or not, 
-      //when the right button is pressed it plays the animation
-      if (upPressed || downPressed || leftPressed || rightPressed){
-      isWalking = true;
-      } else {
-      isWalking = false;
-      }
-      //make it so that he cant walk offscreen
-      //anticipate for accidental caps lock
-      //down (s)
-    if (downPressed && position.y<height - 65 && canMove) {
-      //estimate where guy would be in 2 pixels
-      PVector newPos = new PVector (position.x,position.y +2);
-      //give the desk collision check the info it needs
-      //if youre not gonna collide with the objects in 2 pixels, move that way
-      if(isOutside){
-        //move 2 pixels down
-        outside.tracker.y-=1;
-        outside.pos.y -=3;
-        
-      }
+    //when the right button is pressed it plays the animation
+    if (upPressed || downPressed || leftPressed || rightPressed){
+        isWalking = true;
+    } else {
+        isWalking = false;
     }
-    //left (a)
-    if (leftPressed && position.x > -16 && canMove) {
-      direction = -1;
-      PVector newPos = new PVector (position.x - 2,position.y);
-      if(isOutside){
-        //move 2 pixels left
-        outside.tracker.x-=1;
-        outside.pos.x+=3;
-      }  
-    }
-    // up (w)
-    if (upPressed && position.y > 0 && canMove) {
-      PVector newPos = new PVector (position.x,position.y -2);
-      if(isOutside){
-        //move 2 pixels up
-        outside.tracker.y+=1;
-        outside.pos.y+=3;
-      }
-    }
-    //right (d)
-    if (rightPressed && position.x > -16 && canMove) {
-      direction = 1;
-      PVector newPos = new PVector (position.x+2,position.y);
-      if(isOutside){
-        //move 2 pixels rright
-        outside.tracker.x+=1;
-        outside.pos.x-=3;
-        
-      }
-    }
-    }
-    
-    //movement section for the guy moving, not the map
-    //needed to be rewritten and divided by both axis so that if he is outsside the x frame, 
-    //but not y cam still follows y movement and vice versa
+    //divided up by checks for x and y
+    //vertical check 
     //down (s)
-    if (downPressed && canMove) {
-      if(outside.guyMoveX)
-      //estimate where guy would be in 2 pixels
-      PVector newPos = new PVector (position.x,position.y +2);
-      //give the desk collision check the info it needs
-      //if youre not gonna collide with the objects in 2 pixels, move that way
-      if(isOutside){
-        //move 2 pixels down
+    if(downPressed && position.y<height - 65 && canMove){
         outside.tracker.y-=1;
-        outside.pos.y -=3;
-        
-      }
+        //estimate where guy would be in 2 pixels
+        PVector newPos = new PVector (position.x,position.y +2);
+        if(!outside.guyMoveY){
+            outside.pos.y-=3;
+        } else if (outside.guyMoveY){
+            position.y+=3;
+        }
+    }
+    //up (w)
+    if(upPressed && position.y > 0 && canMove){
+        outside.tracker.y+=1;
+        //estimate where guy would be in 2 pixels
+        PVector newPos = new PVector (position.x,position.y +2);
+        if(!outside.guyMoveY){
+            outside.pos.y+=3;
+        } else if (outside.guyMoveY){
+            position.y-=3;
+        }
+    }
+    
+    //horrizontal check
+    //left (a)
+    if(leftPressed && position.x > -16 && canMove){
+        direction = -1;
+        outside.tracker.x-=1;
+        //estimate where guy would be in 2 pixels
+        PVector newPos = new PVector (position.x,position.y +2);
+        if(!outside.guyMoveX){
+            outside.pos.x+=3;
+        } else if (outside.guyMoveX){
+            position.x-=3;
+        }
+    }
+    //right(d)
+    if(rightPressed && position.x > -16 && canMove){
+      direction = 1;
+        outside.tracker.x+=1;
+        //estimate where guy would be in 2 pixels
+        PVector newPos = new PVector (position.x,position.y +2);
+        if(!outside.guyMoveX){
+            outside.pos.x-=3;
+        } else if (outside.guyMoveX){
+            position.x+=3;
+        }
     }
     
     
-    }
 }
   
+}

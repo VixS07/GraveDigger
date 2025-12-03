@@ -10,7 +10,7 @@ class Outside{
   outside = loadImage("outside.png");
   pos = new PVector (x,y);
   guyMoveX = true;
-  guyMoveY;
+  guyMoveY = false; 
   tracker = new PVector(x,y);
   }
   
@@ -27,7 +27,7 @@ class Outside{
   }
 
   // Vertical check
-  if (tracker.y >= -2 && tracker.y <= 300) {
+  if (tracker.y <= -2 && tracker.y >= -158) {
   guyMoveY = false;   // map moves vertically
   } else {
   guyMoveY = true;    // guy moves vertically
