@@ -28,6 +28,8 @@ void setup(){
   deskScene = new DeskScene(0,0);
   bell = new Bell(550,360,90,70);
   sign = new Sign(50,220,150,120);
+  
+  //outside
   isOutside = false;
   outside = new Outside(0,0);
 }
@@ -70,16 +72,9 @@ void draw(){
     guy.display();
     guy.movementOutside(outside);
     outside.checkMap();
+    
   }
   
-  if(guy.position.x==width/2){
-  fill(255,0,0,10);
-  rect(0,0,50,50);
-  }
-  if(guy.position.y==height/2){
-  fill(0,0,255);
-  rect(0,0,50,50);
-  }
 } 
 
 void keyPressed(){
