@@ -25,10 +25,10 @@ class Grave{
         guyPos.y < (pos.y+outsidePos.y) + (graveH-50) && //shrink the grave h a bit so the guy can walk slightly into the image. helps with prespective
         guyPos.y + guyH > ((pos.y+outsidePos.y) + 100)){
     isColliding = true;
+    rect(0,0,50,50);
     } else {
   isColliding = false;
   }
 }
 
-  //checking to see if guy is colliding with any graves
 }

@@ -13,6 +13,7 @@ Bell bell;
 Sign sign;
 Outside outside;
 Grave[] graves;
+House house;
 
 
 void setup(){
@@ -35,6 +36,7 @@ void setup(){
   outside = new Outside(0,0);
   //graves
   graves = new Grave[5];
+  house = new House(0,0,430,250);
   
   //assign for graves at y = 15
   for(int i = 0; i <=2; i++){
@@ -84,6 +86,7 @@ void draw(){
   else if(isOutside){
     outside.display();
     outside.checkMap();
+    house.display(outside.pos);
     // draw all graves
     for (int i = 0; i < graves.length; i++) {
     graves[i].display(outside.pos);
