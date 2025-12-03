@@ -108,7 +108,7 @@ PImage leave;
       //if youre not gonna collide with the objects in 2 pixels, move that way
       if(!bed.isColliding && !desk.isColliding){
         //move 2 pixels down
-        position.y+=2;
+        position.y+=3;
       }
     }
     //left (a)
@@ -129,7 +129,7 @@ PImage leave;
       bed.checkCollision(newPos,guyW,130);
       if(!bed.isColliding && !desk.isColliding){
         //move 2 pixels up
-        position.y-=2;
+        position.y-=3;
       }
     }
     //right (d)
@@ -154,7 +154,9 @@ PImage leave;
   }
   
   void movementOutside(Outside outside){
-    //movement section for the map only moving down
+    //movement section for the map moving, not the guy
+    //horizntal
+    if(!outside.guyMove){
     //if(mapXMoves && !mapYMoves){
     //make it so that regardless on if he can move or not, 
       //when the right button is pressed it plays the animation
@@ -173,7 +175,8 @@ PImage leave;
       //if youre not gonna collide with the objects in 2 pixels, move that way
       if(isOutside){
         //move 2 pixels down
-        outside.pos.y -=2;
+        outside.tracker.y-=1;
+        outside.pos.y -=3;
         
       }
     }
@@ -183,15 +186,17 @@ PImage leave;
       PVector newPos = new PVector (position.x - 2,position.y);
       if(isOutside){
         //move 2 pixels left
-        outside.pos.x-=3;
+        outside.tracker.x-=1;
+        outside.pos.x+=3;
       }  
     }
     // up (w)
-    if (upPressed && position.y > 130 && canMove) {
+    if (upPressed && position.y > 0 && canMove) {
       PVector newPos = new PVector (position.x,position.y -2);
       if(isOutside){
         //move 2 pixels up
-        outside.pos.y-=2;
+        outside.tracker.y+=1;
+        outside.pos.y+=3;
       }
     }
     //right (d)
@@ -200,13 +205,32 @@ PImage leave;
       PVector newPos = new PVector (position.x+2,position.y);
       if(isOutside){
         //move 2 pixels rright
-        outside.pos.x+=3;
+        outside.tracker.x+=1;
+        outside.pos.x-=3;
         
       }
     }
     }
     
-//
-
+    //movement section for the guy moving, not the map
+    //needed to be rewritten and divided by both axis so that if he is outsside the x frame, 
+    //but not y cam still follows y movement and vice versa
+    //down (s)
+    if (downPressed && canMove) {
+      if(outside.guyMoveX)
+      //estimate where guy would be in 2 pixels
+      PVector newPos = new PVector (position.x,position.y +2);
+      //give the desk collision check the info it needs
+      //if youre not gonna collide with the objects in 2 pixels, move that way
+      if(isOutside){
+        //move 2 pixels down
+        outside.tracker.y-=1;
+        outside.pos.y -=3;
+        
+      }
+    }
+    
+    
+    }
 }
   

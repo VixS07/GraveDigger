@@ -69,7 +69,16 @@ void draw(){
     outside.display();
     guy.display();
     guy.movementOutside(outside);
-    //outside.checkMap(guy);
+    outside.checkMap();
+  }
+  
+  if(guy.position.x==width/2){
+  fill(255,0,0,10);
+  rect(0,0,50,50);
+  }
+  if(guy.position.y==height/2){
+  fill(0,0,255);
+  rect(0,0,50,50);
   }
 } 
 
@@ -124,4 +133,10 @@ void mouseClicked(){
   if(bell.isColliding){
   ghostsHelped+=1;
   }
+}
+
+void mousePressed(){
+  println(outside.pos.x, outside.pos.y,guy.position.x,guy.position.y);
+  println(outside.tracker.x,outside.tracker.y);
+
 }

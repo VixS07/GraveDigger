@@ -30,8 +30,8 @@ class Interaction{
     //rug interaction
     if(rug.isColliding && keyCode == ENTER){
     isOutside = true;
-    guy.position.x = width/2;
-    guy.position.y=height/2;
+    guy.position.x = 280;
+    guy.position.y=259;
     }
     
     //cabin interraction
