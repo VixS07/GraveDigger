@@ -12,8 +12,7 @@ DeskScene deskScene;
 Bell bell;
 Sign sign;
 Outside outside;
-  Grave grave;
-  Grave grave2;
+
 
 
 void setup(){
