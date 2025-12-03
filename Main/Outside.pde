@@ -4,7 +4,7 @@ class Outside{
   boolean guyMoveX;
   boolean guyMoveY;
   PVector tracker;
-
+  boolean anyColliding;
   
   
   Outside(float x, float y){
@@ -13,6 +13,7 @@ class Outside{
   guyMoveX = true;
   guyMoveY = false; 
   tracker = new PVector(x,y);
+  anyColliding = false;
   }
   
   void display(){
@@ -34,8 +35,21 @@ class Outside{
   guyMoveY = true;    // guy moves vertically
   }
   }
-
   
+  //find the solution to breaking out of a loop here: 
+  //https://stackoverflow.com/questions/48829828/if-the-condition-of-an-if-statement-is-true-can-you-stop-execution
+  void collidesWithAny(Grave[] graves, PVector newPos, float guyW, float guyH) {
+  //reset the boolean before checking again
+  anyColliding = false; 
+  for (int i = 0; i < graves.length; i++) {
+    graves[i].checkCollision(newPos,guyW,guyH,pos);
+    if (graves[i].isColliding) {
+      anyColliding = true;
+      break; //stop the loop once true happens
+    } 
+  }
+}
+
 
 
 }

@@ -35,11 +35,17 @@ void setup(){
   outside = new Outside(0,0);
   //graves
   graves = new Grave[5];
-  graves[0] = new Grave(680, 15, 110, 210, "grave1", 0);
-  graves[1] = new Grave(980, 15, 110, 210, "grave2", 1);
-  graves[2] = new Grave(1260, 15, 110, 210, "grave3", 2);
-  graves[3] = new Grave(810, 760, 110, 190, "grave4", 3);
-  graves[4] = new Grave(190, 760, 110, 190, "grave5", 4);
+  
+  //assign for graves at y = 15
+  for(int i = 0; i <=2; i++){
+  int j = 680 + (i*300);
+  graves[i] = new Grave (j, 15, 110, 210, "grave" + (i+1), i);
+  }
+  //assign for graves at y = 760
+  for(int i = 3; i <=4; i++){
+  int j = 190 + ((i-3)*620);
+  graves[i] = new Grave (j, 760, 110, 190, "grave" + (i+1), i);
+  }
 }
 
 void draw(){
@@ -77,13 +83,15 @@ void draw(){
   
   else if(isOutside){
     outside.display();
+    outside.checkMap();
     // draw all graves
     for (int i = 0; i < graves.length; i++) {
     graves[i].display(outside.pos);
     }
     guy.display();
-    guy.movementOutside(outside);
-    outside.checkMap();
+    guy.movementOutside(outside,graves);
+    
+  
   }
   
 } 

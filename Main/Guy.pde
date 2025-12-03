@@ -153,7 +153,7 @@ PImage leave;
   }
   }
   
-  void movementOutside(Outside outside){
+  void movementOutside(Outside outside, Grave[] graves){
     //make it so that regardless on if he can move or not, 
     //when the right button is pressed it plays the animation
     if (upPressed || downPressed || leftPressed || rightPressed){
@@ -165,31 +165,33 @@ PImage leave;
     //vertical check 
     //down (s)
     if(downPressed && position.y<height - 65 && canMove){
-        outside.tracker.y-=1;
         //estimate where guy would be in 2 pixels
         PVector newPos = new PVector (position.x,position.y +2);
-
+        outside.collidesWithAny(graves,newPos,guyW,130);
+        if(!outside.anyColliding){
+          outside.tracker.y-=1;
         if(!outside.guyMoveY){
             outside.pos.y-=3;
             outside.pos.y = constrain(outside.pos.y, -outside.outside.height + height, 0);
 
         } else if (outside.guyMoveY){
             position.y+=3;
-        
+        }
     }
   }
     //up (w)
     if(upPressed && position.y > 0 && canMove){
-        outside.tracker.y+=1;
         //estimate where guy would be in 2 pixels
         PVector newPos = new PVector (position.x,position.y -2);
-
+        outside.collidesWithAny(graves,newPos,guyW,130);
+        if(!outside.anyColliding){
+          outside.tracker.y+=1;
         if(!outside.guyMoveY){
             outside.pos.y+=3;
             outside.pos.y = constrain(outside.pos.y, -outside.outside.height + height, 0);
         } else if (outside.guyMoveY){
             position.y-=3;
-        
+        }
     }
   }
     
@@ -197,24 +199,27 @@ PImage leave;
     //left (a)
     if(leftPressed && position.x > 16 && canMove){
         direction = -1;
-        outside.tracker.x-=1;
         //estimate where guy would be in 2 pixels
         PVector newPos = new PVector (position.x-2,position.y);
+        outside.collidesWithAny(graves,newPos,guyW,130);
+        if(!outside.anyColliding){
+          outside.tracker.x-=1;
         if(!outside.guyMoveX){
             outside.pos.x+=3;
             outside.pos.x = constrain(outside.pos.x, -outside.outside.width + width, 0);
         } else if (outside.guyMoveX){
             position.x-=3;
-        
+        }
     }
     }
     //right(d)
     if(rightPressed && position.x < 680 && canMove){
       direction = 1;
-        outside.tracker.x+=1;
         //estimate where guy would be in 2 pixels
         PVector newPos = new PVector (position.x+2,position.y);
-
+        outside.collidesWithAny(graves,newPos,guyW,130);
+        if(!outside.anyColliding){
+          outside.tracker.x+=1;
         if(!outside.guyMoveX){
             outside.pos.x-=3;
             outside.pos.x = constrain(outside.pos.x, -outside.outside.width + width, 0);
@@ -222,10 +227,7 @@ PImage leave;
             position.x+=3;
         }
     }
-    
-    
+    }
 }
-
-
   
 }
