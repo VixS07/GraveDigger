@@ -100,7 +100,7 @@ void draw(){
     guy.movementOutside(outside,graves);
     if(drawPlace){
       image(interaction.place,guy.position.x+50,guy.position.y-100,100,100);
-      sign1.display();
+      image(interaction.choice,guy.position.x+50,guy.position.y,100,100);
     }
   }
   
@@ -161,12 +161,23 @@ void keyPressed(){
 }
 
 void mouseClicked(){
+  //click on bell
   bell.checkCollision();
   if(bell.canClick && bell.isColliding){
   ghostsHelped+=1;
   bell.canClick = false;
   }
+  //click on sign
   sign.checkCollision();
+  
+  //click on check
+  if(drawPlace){
+  if(mouseX > guy.position.x+50 && mouseX < guy.position.x +150 &&
+     mouseY >guy.position.y && mouseY<guy.position.y+100){
+     interaction.checkYes = true;
+     println(interaction.checkYes);
+     }
+  }
 }
 
 //void mousePressed(){

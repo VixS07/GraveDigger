@@ -2,11 +2,19 @@ class Interaction{
   boolean showDesk;
   boolean showEnd;
   PImage place;
+  PImage choice;
+  boolean checkYes;
+  boolean checkNo;
+  int gravesTaken;
 
   Interaction(){
     showDesk = false;
     showEnd = false;
     place = loadImage("place.png");
+    choice = loadImage("choice.png");
+    checkYes = false;
+    checkNo = false;
+    gravesTaken = 0;
   }
   
   void assign(){
@@ -53,10 +61,24 @@ class Interaction{
       for(int i = 0; i < graves.length; i++){
         Grave num = graves[i];
         if(num.isColliding){
-          
+          if(hasGhost &&!num.taken){
+          drawPlace = true;
+          if(checkYes){
+            num.taken = true;
+            hasGhost = false;
+            checkYes = false;
+            drawPlace = false;
+            gravesTaken +=1;
+            bell.canClick = true;
+          }
+          } else if (num.taken){
+            println("someone already lays here, try somewhere else");
+            drawPlace = false;
+          }
+          }
         }
       }
       }
     
-    }
+    
 }  

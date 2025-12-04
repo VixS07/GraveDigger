@@ -23,8 +23,8 @@ class Sign{
         mouseY < pos.y + signH-20 && 
         mouseY > pos.y) {
     isColliding = true;
+    //since I use the same object for confirming or denying getting ghosts, and getting rid of them
     hasGhost = true;
-    println(bell.canClick);
     interaction.showDesk = false;
     guy.canMove = true;
     } else if (
@@ -33,6 +33,7 @@ class Sign{
     mouseY < pos.y + signH-20 && 
     mouseY > pos.y){
   isColliding = false;
+  hasGhost = false;
   bell.canClick = true;
   println(bell.canClick);  
   }

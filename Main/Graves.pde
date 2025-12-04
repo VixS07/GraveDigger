@@ -5,7 +5,7 @@ class Grave{
   float graveW;
   float graveH;
   boolean isColliding;
-  boolean hasGhost;
+  boolean taken;
   
   Grave(float x, float y, float w, float h, String name, int num, boolean occupied){
   pos = new PVector(x,y);
@@ -14,7 +14,7 @@ class Grave{
   graveW = w;
   graveH = h;
   isColliding=false;
-  hasGhost = occupied;
+  taken = occupied;
   }
   
   void display(PVector outsidePos){

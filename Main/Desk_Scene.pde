@@ -1,5 +1,6 @@
 class DeskScene{
   Ghosts ghost1;
+  Ghosts ghost2;
   PImage wall;
   PImage desk;
   PVector wallPos;
@@ -8,6 +9,7 @@ class DeskScene{
     desk = loadImage("desk.png");
     wallPos = new PVector(x,y);
     ghost1 = new Ghosts(250,30,300,310,"ghost1",3);
+    ghost2 = new Ghosts(250,30,300,310,"ghost2",3);
   }
   
   
@@ -24,9 +26,11 @@ class DeskScene{
     }
   }
   //I was originally gonna do random order for ghossts, but i dont have the time to properly implement it
-  if(ghostsHelped == 1){
+  if(ghostsHelped == 1 && interaction.gravesTaken <1){
   ghost1.display();
-  } 
+  } else if (ghostsHelped == 2){
+  ghost2.display();
+  }
   
   //draw desk
   image(desk,0,340,800,190); 
