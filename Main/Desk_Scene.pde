@@ -14,6 +14,7 @@ class DeskScene{
     ghost[0] = new Ghosts(250,30,300,310,"ghost0",3);
     ghost[1] = new Ghosts(250,30,300,310,"ghost1",5);
     ghost[2] = new Ghosts(250,30,300,310,"ghost2",4);
+    ghost[3] = new Ghosts(250,30,300,310,"ghost2",1);
     order = 0;
     drawGhost = false;
   }
@@ -33,13 +34,13 @@ class DeskScene{
   }
   //I was originally gonna do random order for ghossts, but i dont have the time to properly implement it
   if(drawGhost){
-  if(order == 1 && !hasGhost){
+  if(order == 1 && deskScene.drawGhost){
     ghost[0].display();
-  } else if (order == 2 && !hasGhost){
+  } else if (order == 2 && deskScene.drawGhost){
     ghost[1].display();
-  } else if(order == 2 && !hasGhost){
+  } else if(order == 2 && deskScene.drawGhost){
     ghost[2].display();
-  }
+  } else if (
   }
   
   //draw desk
