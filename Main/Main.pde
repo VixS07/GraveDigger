@@ -58,7 +58,6 @@ void draw(){
   else if(gameScreenFreeze && interaction.showDesk){
   deskScene.display(bell);
   } else if (!isOutside){
-  
   //cabin
   cabin.display();
   //will diplay undernaeth if above furniture
@@ -79,8 +78,6 @@ void draw(){
   }
   guy.movement(desk,bed,rug);
   
-  //essentially all objects passed into the interaction checksssdsa
-  interaction.assign(bed, desk, bell, rug, guy,deskScene);
   }
   
   else if(isOutside){
@@ -93,8 +90,7 @@ void draw(){
     }
     guy.display();
     guy.movementOutside(outside,graves);
-    
-  
+
   }
   
 } 
@@ -108,6 +104,10 @@ void keyPressed(){
    gameScreenFreeze = false;
    interaction.showEnd = false;
    interaction.showDesk = false;
+  }
+  if(keyCode == ENTER){
+  //class that actually handles the interactions between classes
+  interaction.assign();
   }
   
   //checking to see if the key is pressed

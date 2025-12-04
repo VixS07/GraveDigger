@@ -4,6 +4,7 @@ class House{
   float houseW;
   float houseH;
   boolean isColliding;
+
   
   House(float x, float y, float w, float h){
     pos = new PVector (x,y);
@@ -28,4 +29,5 @@ class House{
       isColliding = false;
     }
   }
-}
+  }
+  

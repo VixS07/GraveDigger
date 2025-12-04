@@ -167,8 +167,9 @@ PImage leave;
     if(downPressed && position.y<height - 65 && canMove){
         //estimate where guy would be in 2 pixels
         PVector newPos = new PVector (position.x,position.y +2);
+        house.checkCollision(newPos,guyW,130,outside.pos);
         outside.collidesWithAny(graves,newPos,guyW,130);
-        if(!outside.anyColliding){
+        if(!outside.anyColliding&& !house.isColliding){
           outside.tracker.y-=1;
         if(!outside.guyMoveY){
             outside.pos.y-=3;
@@ -184,7 +185,8 @@ PImage leave;
         //estimate where guy would be in 2 pixels
         PVector newPos = new PVector (position.x,position.y -2);
         outside.collidesWithAny(graves,newPos,guyW,130);
-        if(!outside.anyColliding){
+        house.checkCollision(newPos,guyW,130,outside.pos);
+        if(!outside.anyColliding&& !house.isColliding){
           outside.tracker.y+=1;
         if(!outside.guyMoveY){
             outside.pos.y+=3;
@@ -202,7 +204,8 @@ PImage leave;
         //estimate where guy would be in 2 pixels
         PVector newPos = new PVector (position.x-2,position.y);
         outside.collidesWithAny(graves,newPos,guyW,130);
-        if(!outside.anyColliding){
+        house.checkCollision(newPos,guyW,130,outside.pos);
+        if(!outside.anyColliding&& !house.isColliding){
           outside.tracker.x-=1;
         if(!outside.guyMoveX){
             outside.pos.x+=3;
@@ -218,7 +221,8 @@ PImage leave;
         //estimate where guy would be in 2 pixels
         PVector newPos = new PVector (position.x+2,position.y);
         outside.collidesWithAny(graves,newPos,guyW,130);
-        if(!outside.anyColliding){
+        house.checkCollision(newPos,guyW,130,outside.pos);
+        if(!outside.anyColliding && !house.isColliding){
           outside.tracker.x+=1;
         if(!outside.guyMoveX){
             outside.pos.x-=3;
