@@ -11,7 +11,7 @@ class Outside{
   outside = loadImage("outside.png");
   pos = new PVector (x,y);
   guyMoveX = true;
-  guyMoveY = false; 
+  guyMoveY = true; 
   tracker = new PVector(x,y);
   anyColliding = false;
   }
@@ -36,7 +36,7 @@ class Outside{
   }
   }
   
-  //find the solution to breaking out of a loop here: 
+  //found the solution to breaking out of a loop here: 
   //https://stackoverflow.com/questions/48829828/if-the-condition-of-an-if-statement-is-true-can-you-stop-execution
   void collidesWithAny(Grave[] graves, PVector newPos, float guyW, float guyH) {
   //reset the boolean before checking again

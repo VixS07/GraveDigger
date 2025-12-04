@@ -11,11 +11,13 @@ boolean isOutside;
 DeskScene deskScene;
 Bell bell;
 Sign sign;
+Sign sign1;
 Outside outside;
 Grave[] graves;
 House house;
 boolean hasGhost;
-
+Reset reset;
+boolean drawPlace;
 
 void setup(){
   size(800,530);
@@ -31,6 +33,7 @@ void setup(){
   deskScene = new DeskScene(0,0);
   bell = new Bell(550,360,90,70);
   sign = new Sign(50,220,150,120);
+  sign1 = new Sign(guy.position.x-150,guy.position.y-260,100,70);
   
   //outside
   isOutside = false;
@@ -38,6 +41,7 @@ void setup(){
   //graves
   graves = new Grave[5];
   house = new House(40,0,430,250);
+  reset = new Reset();
   
   //assign for graves at y = 15
   for(int i = 0; i <=2; i++){
@@ -51,6 +55,7 @@ void setup(){
   }
   
   hasGhost = false;
+  drawPlace=false;
 }
 
 void draw(){
@@ -93,7 +98,10 @@ void draw(){
     }
     guy.display();
     guy.movementOutside(outside,graves);
-
+    if(drawPlace){
+      image(interaction.place,guy.position.x+50,guy.position.y-100,100,100);
+      sign1.display();
+    }
   }
   
 } 
@@ -127,6 +135,10 @@ void keyPressed(){
   }
   if (key == 'd' || key == 'D'){
     guy.rightPressed = true;
+  }
+  
+  if(key == 'k'){
+  reset.redo();
   }
 }
 

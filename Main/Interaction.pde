@@ -1,11 +1,12 @@
 class Interaction{
   boolean showDesk;
   boolean showEnd;
+  PImage place;
 
   Interaction(){
     showDesk = false;
     showEnd = false;
-  
+    place = loadImage("place.png");
   }
   
   void assign(){
@@ -46,5 +47,12 @@ class Interaction{
   
   
     //grave interaction
+    if(outside.anyColliding){
+      if(hasGhost){
+        drawPlace = true;
+        guy.canMove = false;
+      }
+    
+    }
   }
 }  

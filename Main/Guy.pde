@@ -11,15 +11,12 @@ int guyFrameSide;
 int guyFrameUp;
 PVector position;
 int direction = 1;
-boolean canMove = true;
+boolean canMove;
 
 boolean upPressed;
 boolean downPressed; 
 boolean leftPressed;
 boolean rightPressed;
-
-boolean mapXMoves;
-boolean mapYMoves;
 
 PImage leave;
 PImage ghosty;
@@ -31,6 +28,7 @@ PImage ghosty;
     guyWalkDown = new PImage[4];
     guyWalkSide = new PImage[6];  
     guyWalkUp = new PImage[4];
+    canMove = true;
     //asssigning all the images into the array for walking down animation
     for(int i = 0; i < guyWalkDown.length;i++){
       guyWalkDown[i] = loadImage("down" + (i+1) + ".png");
