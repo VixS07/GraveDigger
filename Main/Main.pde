@@ -46,12 +46,12 @@ void setup(){
   //assign for graves at y = 15
   for(int i = 0; i <=2; i++){
   int j = 680 + (i*300);
-  graves[i] = new Grave (j, 15, 110, 210, "grave" + (i+1), i,false);
+  graves[i] = new Grave (j, 15, 110, 210, "grave" + (i+1), i+1,false);
   }
   //assign for graves at y = 760
   for(int i = 3; i <=4; i++){
   int j = 190 + ((i-3)*620);
-  graves[i] = new Grave (j, 760, 110, 190, "grave" + (i+1), i,false);
+  graves[i] = new Grave (j, 760, 110, 190, "grave" + (i+1), i+1,false);
   }
   
   hasGhost = false;
@@ -164,18 +164,19 @@ void mouseClicked(){
   //click on bell
   bell.checkCollision();
   if(bell.canClick && bell.isColliding){
-  ghostsHelped+=1;
+  deskScene.order+=1;
   bell.canClick = false;
+  deskScene.drawGhost = true;
   }
   //click on sign
   sign.checkCollision();
   
   //click on check
   if(drawPlace){
-  if(mouseX > guy.position.x+50 && mouseX < guy.position.x +150 &&
+  if(mouseX > guy.position.x+50 && mouseX < guy.position.x +75 &&
      mouseY >guy.position.y && mouseY<guy.position.y+100){
      interaction.checkYes = true;
-     println(interaction.checkYes);
+     interaction.assign();
      }
   }
 }

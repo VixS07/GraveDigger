@@ -1,15 +1,20 @@
 class DeskScene{
-  Ghosts ghost1;
-  Ghosts ghost2;
   PImage wall;
   PImage desk;
   PVector wallPos;
+  Ghosts[] ghost;
+  int order;
+  boolean drawGhost;
+  
   DeskScene(float x, float y){
     wall = loadImage("Cabin wall.png");
     desk = loadImage("desk.png");
     wallPos = new PVector(x,y);
-    ghost1 = new Ghosts(250,30,300,310,"ghost1",3);
-    ghost2 = new Ghosts(250,30,300,310,"ghost2",3);
+    ghost = new Ghosts[4];
+    ghost[1] = new Ghosts(250,30,300,310,"ghost1",3);
+    ghost[2] = new Ghosts(250,30,300,310,"ghost2",5);
+    order = 0;
+    drawGhost = false;
   }
   
   
@@ -26,10 +31,12 @@ class DeskScene{
     }
   }
   //I was originally gonna do random order for ghossts, but i dont have the time to properly implement it
-  if(ghostsHelped == 1 && interaction.gravesTaken <1){
-  ghost1.display();
-  } else if (ghostsHelped == 2){
-  ghost2.display();
+  if(drawGhost){
+  if(order == 1 && !hasGhost){
+  ghost[1].display();
+  } else if (order == 2 && !hasGhost){
+  ghost[2].display();
+  }
   }
   
   //draw desk

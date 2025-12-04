@@ -70,6 +70,13 @@ class Interaction{
             drawPlace = false;
             gravesTaken +=1;
             bell.canClick = true;
+            println(num.id);
+            if(deskScene.ghost[deskScene.order].id == num.id){
+            ghostsHelped+=1;
+            println(ghostsHelped);
+            }
+          } else if(checkNo){
+            drawPlace = false;
           }
           } else if (num.taken){
             println("someone already lays here, try somewhere else");

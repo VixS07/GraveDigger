@@ -237,8 +237,6 @@ PImage ghosty;
     }
     }
     
-    //recheck for pos???
-    PVector newPos = new PVector (position.x,position.y);
 }
   
 }
