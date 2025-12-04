@@ -4,6 +4,7 @@ class Bell{
   PVector position;
   float bellW;
   float bellH;
+  boolean canClick;
   
   Bell(float x, float y,float w,float h){
   bell = loadImage("bell.png");
@@ -11,6 +12,7 @@ class Bell{
   isColliding = false;
   bellW = w;
   bellH = h;
+  canClick = true;
   }
   
   void display(){

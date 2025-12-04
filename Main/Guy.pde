@@ -22,6 +22,7 @@ boolean mapXMoves;
 boolean mapYMoves;
 
 PImage leave;
+PImage ghosty;
   Guy(float x, float y){
     guyW = 90;
     position = new PVector(x,y);
@@ -44,10 +45,15 @@ PImage leave;
     }
     
     leave = loadImage("leave.png");
+    ghosty = loadImage("hasghost.png");
     
   }
   
   void display(){
+    //ghost that follows you if you say yes to one, goes away once theyre buried
+    if(hasGhost){
+    image(ghosty,position.x-100,position.y-100,50,50);
+    }
   //each frame of the animation every 5 frames for walking down
   if (frameCount % 10 == 0){
     guyFrameDown = (guyFrameDown + 1) % guyWalkDown.length;

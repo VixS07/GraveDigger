@@ -14,6 +14,7 @@ Sign sign;
 Outside outside;
 Grave[] graves;
 House house;
+boolean hasGhost;
 
 
 void setup(){
@@ -36,7 +37,7 @@ void setup(){
   outside = new Outside(0,0);
   //graves
   graves = new Grave[5];
-  house = new House(0,0,430,250);
+  house = new House(40,0,430,250);
   
   //assign for graves at y = 15
   for(int i = 0; i <=2; i++){
@@ -48,6 +49,8 @@ void setup(){
   int j = 190 + ((i-3)*620);
   graves[i] = new Grave (j, 760, 110, 190, "grave" + (i+1), i);
   }
+  
+  hasGhost = false;
 }
 
 void draw(){
@@ -147,13 +150,13 @@ void keyPressed(){
 
 void mouseClicked(){
   bell.checkCollision();
-  if(bell.isColliding){
+  if(bell.canClick && bell.isColliding){
   ghostsHelped+=1;
+  bell.canClick = false;
   }
+  sign.checkCollision();
 }
 
-void mousePressed(){
-  println(outside.pos.x, outside.pos.y,guy.position.x,guy.position.y);
-  println(outside.tracker.x,outside.tracker.y);
-
-}
+//void mousePressed(){
+//  println(outside.pos.x, outside.pos.y,guy.position.x,guy.position.y);
+//  println(outside.tracker.x,outside.tracker.y);

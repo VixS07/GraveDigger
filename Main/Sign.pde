@@ -18,13 +18,23 @@ class Sign{
   }
   
   void checkCollision(){
-   if (mouseX < pos.x + signW && 
+   if (mouseX < pos.x + signW/2 && 
         mouseX > pos .x &&
-        mouseY < pos.y + signH && 
+        mouseY < pos.y + signH-20 && 
         mouseY > pos.y) {
     isColliding = true;
-    } else {
+    hasGhost = true;
+    println(bell.canClick);
+    interaction.showDesk = false;
+    guy.canMove = true;
+    } else if (
+    mouseX < pos.x + signW && 
+    mouseX > pos .x &&
+    mouseY < pos.y + signH-20 && 
+    mouseY > pos.y){
   isColliding = false;
+  bell.canClick = true;
+  println(bell.canClick);  
   }
   
 }

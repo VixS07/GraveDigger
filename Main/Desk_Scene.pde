@@ -7,7 +7,7 @@ class DeskScene{
     wall = loadImage("Cabin wall.png");
     desk = loadImage("desk.png");
     wallPos = new PVector(x,y);
-    ghost1 = new Ghosts(250,30,200,310,"ghost1",1);
+    ghost1 = new Ghosts(250,30,300,310,"ghost1",1);
   }
   
   
@@ -26,7 +26,7 @@ class DeskScene{
   //I was originally gonna do random order for ghossts, but i dont have the time to properly implement it
   if(ghostsHelped == 1){
   ghost1.display();
-  }
+  } 
   
   //draw desk
   image(desk,0,340,800,190); 
@@ -34,7 +34,7 @@ class DeskScene{
   //draw bell
   bell.display();
   
-  //draw sign
+  //sign stuff
   sign.display();
   }
   
