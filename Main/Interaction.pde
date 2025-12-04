@@ -47,12 +47,16 @@ class Interaction{
   
   
     //grave interaction
+    //loop
     if(outside.anyColliding){
-      if(hasGhost){
-        drawPlace = true;
-        guy.canMove = false;
+      //loop through the grave ids to find out which grave youre on
+      for(int i = 0; i < graves.length; i++){
+        Grave num = graves[i];
+        if(num.isColliding){
+          
+        }
+      }
       }
     
     }
-  }
 }  

@@ -5,18 +5,24 @@ class Grave{
   float graveW;
   float graveH;
   boolean isColliding;
+  boolean hasGhost;
   
-  Grave(float x, float y, float w, float h, String name, int num){
+  Grave(float x, float y, float w, float h, String name, int num, boolean occupied){
   pos = new PVector(x,y);
   grave = loadImage(name + ".png");
   id = num;
   graveW = w;
   graveH = h;
   isColliding=false;
+  hasGhost = occupied;
   }
   
   void display(PVector outsidePos){
   image(grave,pos.x + outsidePos.x,pos.y + outsidePos.y,graveW,graveH);
+  }
+  
+  void change(){
+  
   }
   
   void checkCollision(PVector guyPos, float guyW, float guyH, PVector outsidePos){
