@@ -11,7 +11,6 @@ boolean isOutside;
 DeskScene deskScene;
 Bell bell;
 Sign sign;
-Sign sign1;
 Outside outside;
 Grave[] graves;
 House house;
@@ -33,7 +32,6 @@ void setup(){
   deskScene = new DeskScene(0,0);
   bell = new Bell(550,360,90,70);
   sign = new Sign(50,220,150,120);
-  sign1 = new Sign(guy.position.x-150,guy.position.y-260,100,70);
   
   //outside
   isOutside = false;
@@ -46,12 +44,12 @@ void setup(){
   //assign for graves at y = 15
   for(int i = 0; i <=2; i++){
   int j = 680 + (i*300);
-  graves[i] = new Grave (j, 15, 110, 210, "grave" + (i+1), i+1,false);
+  graves[i] = new Grave (j, 15, 110, 210, "grave" + (i), i+1,false);
   }
   //assign for graves at y = 760
   for(int i = 3; i <=4; i++){
   int j = 190 + ((i-3)*620);
-  graves[i] = new Grave (j, 760, 110, 190, "grave" + (i+1), i+1,false);
+  graves[i] = new Grave (j, 760, 110, 190, "grave" + (i), i+1,false);
   }
   
   hasGhost = false;
@@ -173,11 +171,14 @@ void mouseClicked(){
   
   //click on check
   if(drawPlace){
-  if(mouseX > guy.position.x+50 && mouseX < guy.position.x +75 &&
+  if(mouseX > guy.position.x+50 && mouseX < guy.position.x +100 &&
      mouseY >guy.position.y && mouseY<guy.position.y+100){
      interaction.checkYes = true;
      interaction.assign();
-     }
+     } else if (mouseX > guy.position.x+50 && mouseX < guy.position.x +150 &&
+         mouseY >guy.position.y && mouseY<guy.position.y+100){
+                  drawPlace = false;
+    }
   }
 }
 

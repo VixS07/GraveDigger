@@ -11,8 +11,9 @@ class DeskScene{
     desk = loadImage("desk.png");
     wallPos = new PVector(x,y);
     ghost = new Ghosts[4];
-    ghost[1] = new Ghosts(250,30,300,310,"ghost1",3);
-    ghost[2] = new Ghosts(250,30,300,310,"ghost2",5);
+    ghost[0] = new Ghosts(250,30,300,310,"ghost0",3);
+    ghost[1] = new Ghosts(250,30,300,310,"ghost1",5);
+    ghost[2] = new Ghosts(250,30,300,310,"ghost2",4);
     order = 0;
     drawGhost = false;
   }
@@ -33,9 +34,11 @@ class DeskScene{
   //I was originally gonna do random order for ghossts, but i dont have the time to properly implement it
   if(drawGhost){
   if(order == 1 && !hasGhost){
-  ghost[1].display();
+    ghost[0].display();
   } else if (order == 2 && !hasGhost){
-  ghost[2].display();
+    ghost[1].display();
+  } else if(order == 2 && !hasGhost){
+    ghost[2].display();
   }
   }
   
