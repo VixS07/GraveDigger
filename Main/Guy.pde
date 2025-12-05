@@ -49,15 +49,15 @@ PVector ghostyAcc;
     
     leave = loadImage("leave.png");
     ghosty = loadImage("hasghost.png");
-    ghostyPosition = new PVector(position.x-100,constrain(position.y,position.y-100,position.y+100));
+    ghostyPosition = new PVector(position.x-100,position.y-50);
+    ghostyVel = new PVector(0,random(-1,1));
+    ghostyAcc = new PVector(0,random(-0.5,0.5));
   }
   
   void display(){
     //ghost that follows you if you say yes to one, goes away once theyre buried
     if(hasGhost){
-      ghostyPosition.x = position.x - 100;
-      ghostyPosition.y = constrain(ghostyPosition.y, position.y - 100, position.y + 100);
-    image(ghosty,ghostyPosition.x,position.y-100,50,50);
+    image(ghosty,ghostyPosition.x,ghostyPosition.y,50,50);
     }
   //each frame of the animation every 5 frames for walking down
   if (frameCount % 10 == 0){
@@ -97,6 +97,22 @@ PVector ghostyAcc;
   imageMode(CORNER);
   popMatrix();
 
+  }
+  
+  void updateGhost(){
+    //checks and updates for bobbing
+    //update pos
+    ghostyVel.add(ghostyAcc);
+    ghostyPosition.add(ghostyVel);
+    //set limit here
+    if(ghostyPosition.y <= position.y-100 || ghostyPosition.y >= position.y +100){
+      //flip direction
+    ghostyVel.y*= -1;
+    ghostyPosition.y = constrain(ghostyPosition.y, position.y - 100, position.y + 100);
+
+    }
+    //x pos (doesnt change)
+    ghostyPosition.x = position.x - 100;
   }
   
   void movement(Desk desk, Bed bed, Rug rug){

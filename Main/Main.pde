@@ -65,6 +65,7 @@ void draw(){
   else if(gameScreenFreeze && interaction.showDesk){
   deskScene.display(bell);
   } else if (!isOutside){
+    guy.updateGhost();
   //cabin
   cabin.display();
   //will diplay undernaeth if above furniture
@@ -88,6 +89,7 @@ void draw(){
   }
   
   else if(isOutside){
+    
     outside.display();
     outside.checkMap();
     house.display(outside.pos);
@@ -95,6 +97,7 @@ void draw(){
     for (int i = 0; i < graves.length; i++) {
     graves[i].display(outside.pos);
     }
+    guy.updateGhost();
     guy.display();
     guy.movementOutside(outside,graves);
     if(drawPlace){
