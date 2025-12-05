@@ -8,12 +8,14 @@ class Reset{
   void redo(){
   //main
   gameScreenFreeze = false;
+  guy = new Guy(500,400);
     //outside
   isOutside = false;
     //gen
   hasGhost = false;
   drawPlace=false;
   canGet = true;
+  showTitle = true;
   
     //Bed
   bed.isColliding = false;

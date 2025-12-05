@@ -18,12 +18,15 @@ boolean hasGhost;
 Reset reset;
 boolean drawPlace;
 boolean canGet;
+PImage title;
+boolean showTitle;
 
 void setup(){
   size(800,530);
+  title = loadImage("title.png");
   
   cabin = new Cabin(0,0);
-  guy = new Guy(600,400);
+  guy = new Guy(500,400);
   desk = new Desk(270,260);
   bed = new Bed(470,120);
   rug = new Rug(500,430);
@@ -38,8 +41,9 @@ void setup(){
   outside = new Outside(0,0);
   //graves
   graves = new Grave[5];
-  house = new House(40,0,430,250);
+  house = new House(0,0,430,250);
   reset = new Reset();
+  showTitle = true;
   
   //assign for graves at y = 15
   for(int i = 0; i <=2; i++){
@@ -64,8 +68,11 @@ void setup(){
 }
 
 void draw(){
-  //display endings
-  if (gameScreenFreeze && interaction.showEnd){
+  //display endings & title
+  if(showTitle){
+    image(title,0,0);
+  }
+  else if (gameScreenFreeze && interaction.showEnd){
     if(ghostsHelped <=1){
       endings[0].display();
     } else if (ghostsHelped <= 4){
@@ -125,12 +132,13 @@ void keyPressed(){
   //solution to prevent prrocessing frrom closing found on here:
   //https://forum.processing.org/one/topic/ignore-escape-key-do-other-action.html
   key = 0;
-  if(gameScreenFreeze){
+  if(gameScreenFreeze || showTitle){
    guy.canMove = true;
    gameScreenFreeze = false;
    interaction.showDesk = false;
+   showTitle=false;
   } else if (!gameScreenFreeze){
-  println("menu");
+  showTitle = true;
   }
   }
   if(keyCode == ENTER){
