@@ -19,7 +19,12 @@ boolean leftPressed;
 boolean rightPressed;
 
 PImage leave;
+//ghost and their movement
 PImage ghosty;
+PVector ghostPosition;
+
+
+
   Guy(float x, float y){
     guyW = 90;
     position = new PVector(x,y);

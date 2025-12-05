@@ -17,6 +17,7 @@ House house;
 boolean hasGhost;
 Reset reset;
 boolean drawPlace;
+boolean canGet = true;
 
 void setup(){
   size(800,530);
@@ -172,7 +173,9 @@ void mouseClicked(){
   deskScene.drawGhost = true;
   }
   //click on sign
+  if(canGet){
   sign.checkCollision();
+  }
   
   //click on check
   if(drawPlace){

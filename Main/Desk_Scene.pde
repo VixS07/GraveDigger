@@ -48,6 +48,7 @@ class DeskScene{
   } else if(order == 4 && deskScene.drawGhost){
     ghost[4].display();
   } else if(order >= 5 && deskScene.drawGhost){
+    canGet = false;
     image(grim,250,30,300,310);
   }
   }
