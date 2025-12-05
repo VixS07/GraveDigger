@@ -1,6 +1,7 @@
 class DeskScene{
   PImage wall;
   PImage desk;
+  PImage grim;
   PVector wallPos;
   Ghosts[] ghost;
   int order;
@@ -10,13 +11,15 @@ class DeskScene{
     wall = loadImage("Cabin wall.png");
     desk = loadImage("desk.png");
     wallPos = new PVector(x,y);
-    ghost = new Ghosts[4];
+    ghost = new Ghosts[5];
     ghost[0] = new Ghosts(250,30,300,310,"ghost0",3);
     ghost[1] = new Ghosts(250,30,300,310,"ghost1",5);
     ghost[2] = new Ghosts(250,30,300,310,"ghost2",4);
-    ghost[3] = new Ghosts(250,30,300,310,"ghost2",1);
+    ghost[3] = new Ghosts(250,30,300,310,"ghost3",1);
+    ghost[4] = new Ghosts(250,30,300,310,"ghost4",1);
     order = 0;
     drawGhost = false;
+    grim = loadImage("grim.png");
   }
   
   
@@ -40,7 +43,13 @@ class DeskScene{
     ghost[1].display();
   } else if(order == 2 && deskScene.drawGhost){
     ghost[2].display();
-  } else if (
+  } else if(order == 3 && deskScene.drawGhost){
+    ghost[3].display();
+  } else if(order == 4 && deskScene.drawGhost){
+    ghost[4].display();
+  } else if(order >= 5 && deskScene.drawGhost){
+    image(grim,250,30,300,310);
+  }
   }
   
   //draw desk
