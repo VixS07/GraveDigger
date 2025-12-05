@@ -109,10 +109,14 @@ void keyPressed(){
   //solution to prevent prrocessing frrom closing found on here:
   //https://forum.processing.org/one/topic/ignore-escape-key-do-other-action.html
   key = 0;
+  if(gameScreenFreeze){
    guy.canMove = true;
    gameScreenFreeze = false;
    interaction.showEnd = false;
    interaction.showDesk = false;
+  } else if (!gameScreenFreeze){
+  println("menu");
+  }
   }
   if(keyCode == ENTER){
   //class that actually handles the interactions between classes
@@ -139,6 +143,7 @@ void keyPressed(){
   reset.redo();
   }
 }
+
 
  
 
