@@ -4,7 +4,7 @@ Desk desk;
 Bed bed;
 Rug rug;
 int ghostsHelped = 0;
-Ending1 ending1;
+Endings[] endings;
 Interaction interaction;
 boolean gameScreenFreeze;
 boolean isOutside;
@@ -17,7 +17,7 @@ House house;
 boolean hasGhost;
 Reset reset;
 boolean drawPlace;
-boolean canGet = true;
+boolean canGet;
 
 void setup(){
   size(800,530);
@@ -27,7 +27,6 @@ void setup(){
   desk = new Desk(270,260);
   bed = new Bed(470,120);
   rug = new Rug(500,430);
-  ending1 = new Ending1();
   interaction = new Interaction();
   gameScreenFreeze = false;
   deskScene = new DeskScene(0,0);
@@ -53,14 +52,27 @@ void setup(){
   graves[i] = new Grave (j, 760, 110, 190, "grave" + (i), i+1,false);
   }
   
+  endings = new Endings[3];
+  //asign endings
+  for(int i = 0; i <3; i++){
+  endings[i] = new Endings(i);
+  }
+  
   hasGhost = false;
   drawPlace=false;
+  canGet = true;
 }
 
 void draw(){
   //display endings
-  if (gameScreenFreeze && ghostsHelped == 0 && interaction.showEnd){
-    ending1.display();
+  if (gameScreenFreeze && interaction.showEnd){
+    if(ghostsHelped <=1){
+      endings[0].display();
+    } else if (ghostsHelped <= 4){
+      endings[1].display();
+    } else if (ghostsHelped ==5){
+      endings[2].display();
+    }
   } 
   else if(gameScreenFreeze && interaction.showDesk){
   deskScene.display(bell);
@@ -116,7 +128,6 @@ void keyPressed(){
   if(gameScreenFreeze){
    guy.canMove = true;
    gameScreenFreeze = false;
-   interaction.showEnd = false;
    interaction.showDesk = false;
   } else if (!gameScreenFreeze){
   println("menu");

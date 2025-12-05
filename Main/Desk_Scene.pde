@@ -16,7 +16,7 @@ class DeskScene{
     ghost[1] = new Ghosts(250,30,300,310,"ghost1",5);
     ghost[2] = new Ghosts(250,30,300,310,"ghost2",4);
     ghost[3] = new Ghosts(250,30,300,310,"ghost3",1);
-    ghost[4] = new Ghosts(250,30,300,310,"ghost4",1);
+    ghost[4] = new Ghosts(250,30,300,310,"ghost4",2);
     order = 0;
     drawGhost = false;
     grim = loadImage("grim.png");
@@ -41,13 +41,13 @@ class DeskScene{
     ghost[0].display();
   } else if (order == 2 && deskScene.drawGhost){
     ghost[1].display();
-  } else if(order == 2 && deskScene.drawGhost){
-    ghost[2].display();
   } else if(order == 3 && deskScene.drawGhost){
-    ghost[3].display();
+    ghost[2].display();
   } else if(order == 4 && deskScene.drawGhost){
+    ghost[3].display();
+  } else if(order == 5 && deskScene.drawGhost){
     ghost[4].display();
-  } else if(order >= 5 && deskScene.drawGhost){
+  } else if(order <=6 && deskScene.drawGhost){
     canGet = false;
     image(grim,250,30,300,310);
   }

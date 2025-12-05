@@ -12,7 +12,6 @@ class Reset{
   desk = new Desk(270,260);
   bed = new Bed(470,120);
   rug = new Rug(500,430);
-  ending1 = new Ending1();
   interaction = new Interaction();
   gameScreenFreeze = false;
   deskScene = new DeskScene(0,0);
@@ -36,6 +35,11 @@ class Reset{
   int j = 190 + ((i-3)*620);
   graves[i] = new Grave (j, 760, 110, 190, "grave" + (i+1), i,false);
   }
+  //asign endings
+  for(int i = 0; i <3; i++){
+  endings[i] = new Endings(i);
+  }
+  canGet = true;
   //Bed
   bed.isColliding = false;
   
