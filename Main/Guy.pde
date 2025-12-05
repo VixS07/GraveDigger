@@ -21,9 +21,9 @@ boolean rightPressed;
 PImage leave;
 //ghost and their movement
 PImage ghosty;
-PVector ghostPosition;
-
-
+PVector ghostyPosition;
+PVector ghostyVel;
+PVector ghostyAcc;
 
   Guy(float x, float y){
     guyW = 90;
@@ -49,13 +49,15 @@ PVector ghostPosition;
     
     leave = loadImage("leave.png");
     ghosty = loadImage("hasghost.png");
-    
+    ghostyPosition = new PVector(position.x-100,constrain(position.y,position.y-100,position.y+100));
   }
   
   void display(){
     //ghost that follows you if you say yes to one, goes away once theyre buried
     if(hasGhost){
-    image(ghosty,position.x-100,position.y-100,50,50);
+      ghostyPosition.x = position.x - 100;
+      ghostyPosition.y = constrain(ghostyPosition.y, position.y - 100, position.y + 100);
+    image(ghosty,ghostyPosition.x,position.y-100,50,50);
     }
   //each frame of the animation every 5 frames for walking down
   if (frameCount % 10 == 0){
